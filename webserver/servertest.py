@@ -147,24 +147,16 @@ def signup():
 LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
 
 
-@app.route('/login', methods = ["POST", "GET"])
-def login():
-  if request.method == "GET":
-    return render_templete("login.html")
-  else:
-    uid = request.form["uid"]
-    cursor = g.conn.execute(LOGIN_USER, uid)
-    result = get_first(cursor)
-    if result: 
-      resp = make_response(redirect("/"))
-      delete_exsting_user_cookie(resp)
-      resp.set_cookie('uid', request.form["uid"])
-      resp.set_cookie('school_name', request.form["school_name"])
-      resp.set_cookies("contact_info", request.form["contact_info"])
-      return resp  
+LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['uid'] == 'uid':
+        session['logged_in'] = True
+    return index()
     else:
-      print "No User Found"
-      return render_template("sign_up.html")
+        flash('No such user id, please sign up!')
+    return render_template("sign_up.html")
 
 
 
