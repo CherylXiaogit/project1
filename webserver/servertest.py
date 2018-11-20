@@ -188,8 +188,8 @@ FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
 def get_all(cursor):
     return [result for result in cursor]
 
-@app.route('/item')
-def item():
+@app.route('/items')
+def items():
     all_cursor = g.conn.execute(FIND_ALL_ITEMS)
     items = get_all(all_cursor)
     data = dict(items = all_item(items))
