@@ -153,10 +153,10 @@ LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
 def do_admin_login():
     if request.form['uid'] == 'uid':
         session['logged_in'] = True
-    return index()
+        return index()
     else:
         flash('No such user id, please sign up!')
-    return render_template("sign_up.html")
+        return render_template("sign_up.html")
 
 
 
