@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block body %} 
+<link rel="stylesheet" type="text/css" href="static/css/form.css">  
+<script>
+$(document)
+  .ready(function() {
+    $('.ui.selection.dropdown')
+        .dropdown()
+    ;
+    $('.ui.form')
+      .form({
+        fields: {
+          uid: {
+            identifier  : 'uid',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Please enter your uid'
+              },
+            ]
+          },
+          password: {
+            identifier  : 'password',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Please enter your password'
+              },
+              {
+                type   : 'length[12]',
+                prompt : 'Your password must be at least 12 characters'
+              }
+            ]
+          }
+        }
+      })
+    ;
+  })
+;
+</script>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <img src="static/img/logo.png" class="image">
+      <!-- <img src="assets/images/logo.png" class="image"> -->
+      <div class="content">
+        Sign up for your account
+      </div>
+    </h2>
+    <form class="ui large form" method="POST" action="sign_up">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="User Name">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="mail icon"></i>
+            <input type="text" name="email" placeholder="Email Address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="heart icon"></i>
+            <input type="text" name="age" placeholder="Your Age Please">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui selection dropdown">
+            <input type="hidden" name="gender">
+            <i class="dropdown icon"></i>
+            <div class="default text">Gender</div>
+            <div class="menu">
+              <div class="item" data-value="male">male</div>
+              <div class="item" data-value="female">female</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+		    <div class="ui selection dropdown">
+			    <input type="hidden" name="zipcode">
+				<i class="dropdown icon"></i>
+				<div class="default text">Zipcode</div>
+				<div class="menu">
+					{% for region_dict in regions %}
+  		  		<div class="item" data-value="{{region_dict['zipcode']}}">
+                {{region_dict['zipcode']}}
+  		  		</div>
+				  {% endfor %}
+				</div>
+		    </div>
+		</div>
+
+        <div class="ui fluid large teal submit button">Sign Up</div>
+      </div>
+      <div class="ui error message"></div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
