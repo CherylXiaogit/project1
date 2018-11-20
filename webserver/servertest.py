@@ -161,7 +161,7 @@ def login():
     result = get_first(cursor)
     if result: 
       resp = make_response(redirect("/"))
-      delete_exsting_user_cookie(resp)
+      delete_cookie(resp)
       resp.set_cookie('uid', request.form["uid"])
       resp.set_cookie('school_name', request.form["school_name"])
       resp.set_cookies("contact_info", request.form["contact_info"])
