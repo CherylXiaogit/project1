@@ -124,7 +124,7 @@ def get_first(cursor):
 SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
                 VALUES (%s, %s, %s);'''
 
-@app.route('/sign_up', method = ["POST", "GET"])
+@app.route('/sign_up', methods = ["POST", "GET"])
 def signup():
   try:
     if request.method == "GET":
@@ -147,7 +147,7 @@ def signup():
 LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
 
 
-@app.route('/login', method = ["POST", "GET"])
+@app.route('/login', methods = ["POST", "GET"])
 def login():
   if request.method == "GET":
     return render_templete("login.html")
