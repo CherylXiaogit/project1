@@ -164,8 +164,6 @@ def login():
       resp = make_response(redirect("/"))
       delete_cookie(resp)
       resp.set_cookie('uid', request.form["uid"])
-      resp.set_cookie('school_name', request.form["school_name"])
-      resp.set_cookie("contact_info", request.form["contact_info"])
       return resp  
     else:
       print "No User Found, please sign up!"
