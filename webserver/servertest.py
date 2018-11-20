@@ -191,9 +191,8 @@ def get_all(cursor):
 @app.route('/item')
 def item():
     all_cursor = g.conn.execute(FIND_ALL_ITEMS)
-    result = get_all(all_cursor)
-    items = all_item(result)
-    data = dict(items)
+    items = get_all(all_cursor)
+    data = dict(items = all_item(items))
     return render_template("items.html", **data)
 
 
