@@ -145,7 +145,8 @@ def signup():
 
 
 LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
-def delete_cookies(resp):
+
+def delete_cookie(resp):
     resp.set_cookie('uid', '', expires = 0)
     resp.set_cookie('school_name', '', expires = 0)
     resp.set_cookie('contact_info', '', expires = 0)
@@ -164,7 +165,7 @@ def login():
       delete_cookie(resp)
       resp.set_cookie('uid', request.form["uid"])
       resp.set_cookie('school_name', request.form["school_name"])
-      resp.set_cookies("contact_info", request.form["contact_info"])
+      resp.set_cookie("contact_info", request.form["contact_info"])
       return resp  
     else:
       print "No User Found, please sign up!"
