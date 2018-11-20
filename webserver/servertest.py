@@ -145,6 +145,10 @@ def signup():
 
 
 LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
+def delete_cookies(resp):
+    resp.set_cookie('uid', '', expires = 0)
+    resp.set_cookie('school_name', '', expires = 0)
+    resp.set_cookie('contact_info', '', expires = 0)
 
 
 @app.route('/login', methods = ["POST", "GET"])
