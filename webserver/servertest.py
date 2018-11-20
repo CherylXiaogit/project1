@@ -181,15 +181,15 @@ def all_item(item):
     for i in item]
   return item
 
-  FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
+FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
                        left join clothing on item.iid = clothing.iid
                        left join service on item.iid = service.iid'''
 
- def get_all(cursor):
+def get_all(cursor):
     return [result for result in cursor]
 
- @app.route('/item')
- def item():
+@app.route('/item')
+def item():
     all_cursor = g.conn.execute(FIND_ALL_ITEMS)
     result = get_all(all_cursor)
     items = all_item(result)
