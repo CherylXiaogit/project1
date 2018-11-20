@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %} 
+
+<div id="hp-hello">
+  <h1 class="ui large header">
+    {% if uid %}
+      Hi, {{uid}}
+    {% else %}
+      Welcome to Campus Trade!
+    {% endif %}
+  </h1>
+</div>
+
+{% endblock %}
