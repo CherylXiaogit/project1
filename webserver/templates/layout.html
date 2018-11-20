@@ -34,6 +34,7 @@
   <a class="item" id="home" href="/">Campus Trade Home</a>
   <a class="item" id="item" href="/item">Find Items</a>
   {% if request.cookies.get("uid") %}
+  {% endif %}
   <a class="item" id="login" href="/login">Log in / Sign up</a>
 </div>
 <script type="text/javascript">
