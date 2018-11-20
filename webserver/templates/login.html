@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block body %} 
 
-<link rel="stylesheet" type="text/css" href="static/css/form.css">  
 <script>
 $(document)
   .ready(function() {
@@ -39,7 +38,6 @@ $(document)
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="static/img/logo.png" class="image">
       <div class="content">
         Log-in to your account
       </div>
@@ -49,13 +47,7 @@ $(document)
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="username" placeholder="User Name">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="mail icon"></i>
-            <input type="text" name="email" placeholder="Email Address">
+            <input type="text" name="uid" placeholder="uid">
           </div>
         </div>
         <div class="ui fluid large teal submit button">Login</div>
@@ -73,25 +65,3 @@ $(document)
 
 {% endblock %}
 
-<!-- FB login code
-
-<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="true"></div>  
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1716638408582023',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id) {
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   } (document, 'script', 'facebook-jssdk'));
-</script>
-
--->
