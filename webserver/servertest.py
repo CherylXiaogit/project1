@@ -121,8 +121,8 @@ def get_first(cursor):
   return data
 
 
-SIGNUP_USER = ''INSERT INTO users (uid, school_name, contact_info)
-                VALUES (%s, %s, %s);''
+SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
+                VALUES (%s, %s, %s);'''
 
 @app.route('/sign_up', method = ["POST", "GET"])
 def signup():
@@ -144,7 +144,7 @@ def signup():
     return redirect("/")
 
 
-
+LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
 
 
 @app.route('/login', method = ["POST", "GET"])
