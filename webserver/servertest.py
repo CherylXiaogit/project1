@@ -193,7 +193,8 @@ def item():
     all_cursor = g.conn.execute(FIND_ALL_ITEMS)
     result = get_all(all_cursor)
     items = all_item(result)
-    return render_template("items.html", **items)
+    data = dic(items)
+    return render_template("items.html", **data)
 
 
 
