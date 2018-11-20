@@ -14,6 +14,11 @@
     {% for data in items %}
     <tr>
       <td>
+	      <h2 class="ui center aligned header">
+          <a href="/event?event_id={{event_dict['id']}}&amp;event_owner=admin">
+        	   {{ event_dict["name"] }}
+          </a>
+        </h2>
       </td>
       <td class="left aligned">
       		{{ items["price"] }}
