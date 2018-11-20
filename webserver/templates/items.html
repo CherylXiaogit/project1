@@ -1,12 +1,48 @@
 {% extends "layout.html" %}
 {% block body %} 
-
-
 <article>
-	<form action="/item" method = "POST">
-
-</form>
-
+	<h2 class="ui teal header">
+  Recommend Restaurants
+  </h2>
+  <table class="ui teal celled padded table">
+    <thead>
+      <tr>
+      <th class="single line">Name</th>
+      <th>Address</th>
+      <th>Location</th>
+      <th>Rating</th>
+      <th>Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for restaurant_dict in restaurants %}
+      <tr>
+        <td>
+          <h2 class="ui center aligned header">
+            <a href="/restaurant?restaurant_id={{ restaurant_dict['id'] }}">
+              {{ restaurant_dict["name"] }}
+            </a>
+          </h2>
+        </td>
+        <td class="left aligned">
+            {{ restaurant_dict["addr"] }}
+        </td>
+        <td class="single line">
+             {{ restaurant_dict["location"] }}
+        </td>
+        <td>
+          <p>{{ restaurant_dict["rate"] }}</p>
+          <div class="ui large star rating" data-rating="{{restaurant_dict['star']}}" data-max-rating="5">
+          </div> 
+        </td>
+        <td class="single line">
+            {{ restaurant_dict["rcount"] }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </article>
+
 
 {% endblock %}
