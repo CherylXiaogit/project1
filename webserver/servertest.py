@@ -11,7 +11,6 @@ Read about it online.
 """
 
 import os
-import psycopg2
 from sqlalchemy import *
 from sqlalchemy import create_engine
 from sqlalchemy.pool import NullPool
