@@ -24,17 +24,17 @@
 	
   <script src="static/semantic/dist/jquery.min.js"></script>
     
-  <title>Foodie</title>
+  <title>Campus Trade</title>
 </head>
 <body>
 <div class="ui fixed pointing top menu">
   <div class="item">
     <img src="static/img/logo.png">
   </div>
-  <a class="item" id="home" href="/">Foodie Home</a>
+  <a class="item" id="home" href="/">Campus Trade Home</a>
   <a class="item" id="restaurant" href="/restaurant">Find Restaurants</a>
-  {% if request.cookies.get("user_id") %}
-    <a class="item" id="event" href="/event">Find Events</a>
+  {% if request.cookies.get("uid") %}
+    <a class="item" id="item" href="item">Find Events</a>
   {% endif %}
   <a class="item" id="login" href="/login">Log in / Sign up</a>
 </div>
