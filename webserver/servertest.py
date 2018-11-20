@@ -172,12 +172,12 @@ def login():
 
 def all_item(item):
   if item:
-    return [{'info': item[0],
-    'location': item[1],
-    'item_condition': item[2],
-    'iid': item[3],
-    'uid': item[4],
-    'price': item[5]}
+    return [{'info': item[0],       \
+    'location': item[1],            \
+    'item_condition': item[2],      \
+    'iid': item[3],                 \
+    'uid': item[4],                 \
+    'price': item[5]}               \
     for i in item]
   return item
 
