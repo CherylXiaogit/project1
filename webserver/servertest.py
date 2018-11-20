@@ -150,7 +150,7 @@ LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
 @app.route('/login', methods = ["POST", "GET"])
 def login():
   if request.method == "GET":
-    return render_templete("login.html")
+    return render_template("login.html")
   else:
     uid = request.form["uid"]
     cursor = g.conn.execute(LOGIN_USER, uid)
