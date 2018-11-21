@@ -192,8 +192,8 @@ def get_all(cursor):
 def items():
     all_cursor = g.conn.execute(FIND_ALL_ITEMS)
     items = get_all(all_cursor)
-    #data = dict(items = all_item(items))
-    data = {'iid':56, 'name':"sjdhf",'price':123, 'item_comdition':"new"} 
+    data = dict(items = all_item(items))
+    #data = {'iid':56, 'name':"sjdhf",'price':123, 'item_comdition':"new"} 
     return render_template("items.html", **data)
 
 
