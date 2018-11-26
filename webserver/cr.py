@@ -124,11 +124,10 @@ def get_first(cursor):
 SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
                 VALUES (%s, %s, %s);'''
 
-GET_LAST_USER_ID_SQL = "SELECT MAX(uid) FROM users;"
 
 @app.route('/sign_up', methods = ["POST", "GET"])
 def signup():
-   try:
+  try:
     if request.method == "GET":
       return render_template("sign_up.html")
     else:
@@ -136,25 +135,17 @@ def signup():
       school_name = request.form["school_name"]
       contact_info = request.form["contact_info"]
       g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
-      cursor = g.conn.execute(GET_LAST_USER_ID_SQL)
-      result = get_first_result(cursor)
-      if cursor:
-        resp = make_response(redirect("/"))
-        delete_exsting_user_cookie(resp)
-        resp.set_cookie('uid', str(result[0]))
-        resp.set_cookie('school_name', request.form["school_name"])
-        resp.set_cookies("contact_info", request.form["contact_info"])
-        return resp
-      else:
-                # TODO(Chris): Handle the error format for signup,
-                # ex. enter age with not numbers or some db callback
-                print "Something happens in DB"
-                return render_template("sign_up.html")
-   except:
-      return redirect("/")
+      resp = make_response(redirect("/"))
+      delete_exsting_user_cookie(resp)
+      resp.set_cookie('uid', request.form["uid"])
+      resp.set_cookie('school_name', request.form["school_name"])
+      resp.set_cookies("contact_info", request.form["contact_info"])
+      return resp
+  except:
+    return redirect("/")
 
 
-LOGIN_USER = '''SELECT uid FROM users WHERE uid = %s'''
+LOGIN_USER = '''SELECT uid,school_name,contact_info FROM users WHERE school_name = %s and contact_info=%s'''
 
 def delete_cookie(resp):
     resp.set_cookie('uid', '', expires = 0)
