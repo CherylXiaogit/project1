@@ -128,7 +128,7 @@ GET_LAST_USER_ID_SQL = "SELECT MAX(uid) FROM users;"
 
 @app.route('/sign_up', methods = ["POST", "GET"])
 def signup():
-  try:
+   try:
     if request.method == "GET":
       return render_template("sign_up.html")
     else:
@@ -150,7 +150,7 @@ def signup():
                 # ex. enter age with not numbers or some db callback
                 print "Something happens in DB"
                 return render_template("sign_up.html")
-     except:
+   except:
       return redirect("/")
 
 
