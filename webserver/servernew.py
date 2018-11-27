@@ -163,7 +163,7 @@ def all_items():
 
 @app.route('/user_reviews')
 def user_reviews():
-  cursor = g.conn.execute('select * from review where receiverid = \''+ %s +'\'')
+  cursor = g.conn.execute('select * from review where receiverid = \''+ uid +'\'')
   info = []
   
   for r in cursor:
