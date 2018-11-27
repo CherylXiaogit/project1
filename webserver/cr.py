@@ -145,7 +145,7 @@ def sign_up():
 @app.route('/myitem', methods=['GET', 'POST'])
 def myitem():
 	if request.method == "GET":
-		return render_template("login.html")
+		return render_template("user_page.html")
 	else:
 		uid = request.form["uid"]
         	cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
@@ -159,7 +159,7 @@ def myitem():
     			tmp['Owner ID'] = str(r[4])
     			tmp['Price'] = str(r[5])
    			info.append(tmp)
-   		 # can also be accessed using result[0】
+   		 # can also be accessed using result[0]
         	cursor.close()
         	return render_template('myitem.html',data=info)
 
