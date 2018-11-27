@@ -192,7 +192,7 @@ def user_reviews():
     tmp['Writer ID'] = str(r[4])
     info.append(tmp)
     cursor.close()
-   return render_template('user_reviews.html',data=info)
+  return render_template('user_reviews.html',data=info)
 
     
     
