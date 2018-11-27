@@ -139,7 +139,23 @@ def sign_up():
             return render_template('userid_error.html')
         else:
             g.conn.execute('insert into users (uid, school_name, contact_info) values(\''+ str(uid) +'\',\'' + str(school_name) +'\',\'' + str(contact_info)+'\')')
-            return render_template('login.html')              
+            return render_template('login.html')    
+@app.route('/all_items')
+def all_items():
+  cursor = g.conn.execute('select * from item')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['info'] = r[0]
+    tmp['location'] = r[1]
+    tmp['item_condition'] = r[2]
+    tmp['iid'] = r[3]
+    tmp['uid'] = r[4]
+    tmp['price'] = r[5]
+    info.append(tmp)
+    cursor.close()
+  return render_template('all_items.html',data=info)
     
     
 if __name__ == "__main__":
