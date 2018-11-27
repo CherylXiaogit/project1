@@ -183,12 +183,6 @@ def sign_up():
 			g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
 			return render_template('user_page.html')
          
-        
-
-
-
-def get_all(cursor):
-    return [result for result in cursor]
 
 @app.route('/items')
 def items():
