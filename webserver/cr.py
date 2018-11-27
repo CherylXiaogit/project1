@@ -182,6 +182,9 @@ def sign_up():
 			contact_info = request.form["contact_info"]
 			g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
 			return render_template('user_page.html')
+		
+	  except:
+		return redirect("/")
          
 
 @app.route('/items')
