@@ -13,9 +13,9 @@ def home():
     else:
         return "Hello Boss!"
  
-@app.route('/login-sid', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+@app.route('/login_sid', methods=['POST'])
+def login():
+    if True:
         session['logged_in'] = True
     else:
         flash('wrong password!')
