@@ -129,7 +129,7 @@ def login():
         resp = make_response(redirect("/"))
         delete_cookie(resp)
         resp.set_cookie('uid', request.form["uid"])
-        return render_template('user_page.html')
+        return resp, render_template('user_page.html')
       else :
             return render_template('not_found.html')
 @app.route('/sign_up', methods=['GET', 'POST'])
