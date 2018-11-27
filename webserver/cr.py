@@ -166,7 +166,7 @@ def login():
       return resp  
     else:
       print "No User Found, please sign up!"
-      return render_template("sign_up.html")
+      return render_template("registe.html")
 
 
 SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info) VALUES (%s, %s, %s);'''
