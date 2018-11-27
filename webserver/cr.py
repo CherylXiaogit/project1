@@ -140,11 +140,6 @@ def sign_up():
         else:
             g.conn.execute('insert into users (uid, school_name, contact_info) values(\''+ str(uid) +'\',\'' + str(school_name) +'\',\'' + str(contact_info)+'\')')
             return render_template('login.html')              
-@app.route('/all')  
-def all_items():
-	  if not session.get('logged_in'):
-			return render_template('user_page.html')
-	  else:
 
 @app.route('/all_items')
 def all_items():
