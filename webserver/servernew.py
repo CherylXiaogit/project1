@@ -107,12 +107,6 @@ def index():
   #
   return render_template("index.html")
 
-def get_first(cursor):
-  data = None
-  for i in cursor:
-    data = i
-    break
-  return data
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -121,7 +115,7 @@ def login():
   print(temp)
 
   cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\' ')
-  result = get_first(cursor)
+  result = [r for r in cursor]
   print(result)
   if  len(result) != 0:
     return render_template('user_page.html')
