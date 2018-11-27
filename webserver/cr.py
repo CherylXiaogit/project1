@@ -142,6 +142,23 @@ def sign_up():
             return render_template('login.html')              
     
 
+@app.route('/all_items')
+def all_items():
+  cursor = g.conn.execute('select * from item')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['Item Information'] = str(r[0])
+    tmp['Location'] = str(r[1])
+    tmp['Item Condition'] = str(r[2])
+    tmp['Item ID'] = str(r[3])
+    tmp['Owner ID'] = str(r[4])
+    tmp['Price'] = str(r[5])
+    info.append(tmp)
+  cursor.close()
+  return render_template('all_items.html',data=info)
+    
 @app.route('/myitem', methods=['GET', 'POST'])
 def myitem():
 	if request.method == "GET":
