@@ -156,6 +156,23 @@ def all_items():
     info.append(tmp)
   cursor.close()
   return render_template('all_items.html',data=info)
+
+
+@app.route('/user_reviews')
+def user_reviews():
+  cursor = g.conn.execute('select * from review where receiverid = \''+ uid+'\'')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['Rating'] = r[0]
+    tmp['Review Content'] = r[1]
+    tmp['Review ID'] = r[2]
+    tmp['Writer ID'] = r[4]
+    info.append(tmp)
+    cursor.close()
+  return render_template('user_reviews.html',data=info)
+
     
     
 if __name__ == "__main__":
