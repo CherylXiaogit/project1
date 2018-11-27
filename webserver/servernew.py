@@ -136,7 +136,7 @@ def login():
       result = [r for r in cursor]
       print(result)
       if  len(result) != 0:
-        resp = make_response(render_templete("login.html"))
+        resp = make_response(render_template("login.html"))
         delete.cookie(resp)
         resp.set_cookie('uid', uid)
         return resp, render_template('user_page.html')
