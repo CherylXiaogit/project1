@@ -168,6 +168,7 @@ def all_items():
 
 @app.route('/user_reviews')
 def user_reviews():
+  uid = request.cookies.get('uid')
   cursor = g.conn.execute('select * from review where receiverid = \''+ uid +'\'')
   info = []
   
