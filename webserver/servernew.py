@@ -129,17 +129,17 @@ def login():
   if request.method == "GET":
     return render_template("sign_up.html")
   else:
-    uid = request.form['uid']
-    school_name = request.form['school_name']
-    contact_info = request.form['contact_info']
-    r = g.conn.execute('select uid from users where uid = \''+ uid+'\'')
+        uid = request.form['uid']
+        school_name = request.form['school_name']
+        contact_info = request.form['contact_info']
+        r = g.conn.execute('select uid from users where uid = \''+ uid+'\'')
         # if username already exists
-    res = [re for re in r]
-    if(len(res) != 0):
-      return render_template('userid_error.html')
-    else:
-      g.conn.execute('insert into users (uid, school_name, contact_info) values(\''+ str(uid) +'\',\'' + str(school_name) +'\',\'' + str(contact_info)+'\')')
-      return render_template('login.html')              
+        res = [re for re in r]
+        if(len(res) != 0):
+            return render_template('userid_error.html')
+        else:
+            g.conn.execute('insert into users (uid, school_name, contact_info) values(\''+ str(uid) +'\',\'' + str(school_name) +'\',\'' + str(contact_info)+'\')')
+            return render_template('login.html')              
     
     
 if __name__ == "__main__":
