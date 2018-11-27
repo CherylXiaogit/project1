@@ -172,7 +172,6 @@ def all_items():
     tmp['Item ID'] = str(r[3])
     tmp['Owner ID'] = str(r[4])
     tmp['Price'] = str(r[5])
-    tmp['uid'] = str(uid)
     info.append(tmp)
   cursor.close()
   return render_template('all_items.html',data=info)
