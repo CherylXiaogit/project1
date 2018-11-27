@@ -125,8 +125,9 @@ SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
                 VALUES (%s, %s, %s);'''
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+
+@app.route('/sign_up', methods = ["POST", "GET"])
+def signup():
 	uid = request.form['uid']
 	school_name = request.form["school_name"]
 	contact_info = request.form["contact_info"]
