@@ -151,14 +151,14 @@ def myitem():
         	cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
         	info = []
         	for r in cursor:
-                tmp = {}
-    		tmp['Item Information'] = str(r[0])
-    		tmp['Location'] = str(r[1])
-    		tmp['Item Condition'] = str(r[2])
-    		tmp['Item ID'] = str(r[3])
-    		tmp['Owner ID'] = str(r[4])
-    		tmp['Price'] = str(r[5])
-   		info.append(tmp)
+			tmp = {}
+    			tmp['Item Information'] = str(r[0])
+    			tmp['Location'] = str(r[1])
+    			tmp['Item Condition'] = str(r[2])
+    			tmp['Item ID'] = str(r[3])
+    			tmp['Owner ID'] = str(r[4])
+    			tmp['Price'] = str(r[5])
+   			info.append(tmp)
    		 # can also be accessed using result[0】
         	cursor.close()
         	return render_template('myitem.html',data=info)
