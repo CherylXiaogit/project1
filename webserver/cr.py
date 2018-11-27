@@ -121,7 +121,7 @@ def login():
       result = [r for r in cursor]
       print(result)
       if  len(result) != 0:
-        return myitem()
+        return render_template('user_page.html')
       else :
             return render_template('not_found.html')
 @app.route('/sign_up', methods=['GET', 'POST'])
@@ -140,7 +140,11 @@ def sign_up():
         else:
             g.conn.execute('insert into users (uid, school_name, contact_info) values(\''+ str(uid) +'\',\'' + str(school_name) +'\',\'' + str(contact_info)+'\')')
             return render_template('login.html')              
-    
+@app.route('/all')  
+def all_items():
+	  if not session.get('logged_in'):
+			return render_template('user_page.html')
+	  else:
 
 @app.route('/all_items')
 def all_items():
