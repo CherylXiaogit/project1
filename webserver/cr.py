@@ -212,7 +212,17 @@ def items():
     #data = {'iid':56, 'name':"sjdhf",'price':123, 'item_comdition':"new"} 
     return render_template("items.html", **data)
 
+@app.route('/login_page')
+def login_page():
+	return render_template('login.html')
 
+@app.route('/registe_page')
+def registe_page():
+        return render_template('registe.html')
+
+@app.route('/index_page')
+def index_page():
+        return render_template('index.html')
 
 if __name__ == "__main__":
   import click
