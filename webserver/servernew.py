@@ -124,11 +124,11 @@ def login():
         return render_template('user_page.html')
       else :
             return render_template('not_found.html')
- @app.route('/sign_up', methods=['GET', 'POST'])
- def sign_up():
-  if request.method == "GET":
-    return render_template("sign_up.html")
-  else:
+@app.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
+    if request.method == "GET":
+        return render_template("sign_up.html")
+    else:
         uid = request.form['uid']
         school_name = request.form['school_name']
         contact_info = request.form['contact_info']
