@@ -147,12 +147,12 @@ def all_items():
   
   for r in cursor:
     tmp = {}
-    tmp['Item Information'] = r[0]
-    tmp['Location'] = r[1]
-    tmp['Item Condition'] = r[2]
-    tmp['Item ID'] = r[3]
-    tmp['Owner ID'] = r[4]
-    tmp['Price'] = r[5]
+    tmp['Item Information'] = str(r[0])
+    tmp['Location'] = str(r[1])
+    tmp['Item Condition'] = str(r[2])
+    tmp['Item ID'] = str(r[3])
+    tmp['Owner ID'] = str(r[4])
+    tmp['Price'] = str(r[5])
     info.append(tmp)
   cursor.close()
   return render_template('all_items.html',data=info)
