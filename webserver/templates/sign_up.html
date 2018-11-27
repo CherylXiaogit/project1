@@ -1,84 +1,28 @@
-{% extends "layout.html" %}
-{% block body %} 
-<script>
-$(document)
-  .ready(function() {
-    $('.ui.selection.dropdown')
-        .dropdown()
-    ;
-    $('.ui.form')
-      .form({
-        fields: {
-          uid: {
-            identifier  : 'uid',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your uid'
-              },
-            ]
-          },
-          school_name: {
-            identifier  : 'school_name',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your school name'
-              },
-            ]
-          },
-	  contact_info: {
-		  indentifier :'contact_info',
-		  rules: [
-			  {
-				  type :'empty',
-				  prompt:'Please enter your contact information'
-			  },
-		]
-	  }
-        }
-      })
-    ;
-  })
-;
-</script>
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <img src="static/img/logo.png" class="image">
-      <!-- <img src="assets/images/logo.png" class="image"> -->
-      <div class="content">
-        Sign up for your account
-      </div>
-    </h2>
-    <form class="ui large form" method="POST" action="sign_up">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="uid" placeholder="User ID">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="mail icon"></i>
-            <input type="text" name="school_name" placeholder="School Name">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="heart icon"></i>
-            <input type="text" name="contact_info" placeholder="Contact Information">
-          </div>
-        </div>
-        
+<html>
+  <style>
+    body{
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
 
-          <input type="submit" value="Register">
-        <div class="ui fluid large teal submit button">Sign Up</div>
-      </div>
-      <div class="ui error message"></div>
-    </form>
-  </div>
-</div>
 
-{% endblock %}
+<body>
+  <h1>Sign Up</h1>
+
+
+
+  <li><a href="login">Login</a></li>
+  
+  <div class="container">
+      <h1>Sign Up</h1>
+      <form action="/sign_up" method="POST">
+  <input type="text" name="uid" placeholder="User ID">
+  <input type="text" name="school_name" placeholder="School Name">
+  <input type="text" name="contact_info" placeholder="Contact Information">
+  <input type="submit" value="Register">
+    </div>
+</body>
+
+
+</html>
