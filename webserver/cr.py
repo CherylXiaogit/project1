@@ -184,16 +184,7 @@ def sign_up():
 			return render_template('user_page.html')
          
         
-def all_item(item):
-  if item:
-    return [{'info': item[0],       \
-    'location': item[1],            \
-    'item_condition': item[2],      \
-    'iid': item[3],                 \
-    'uid': item[4],                 \
-    'price': item[5]}               \
-    for i in item]
-  return item
+
 
 FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
                        left join clothing on item.iid = clothing.iid
