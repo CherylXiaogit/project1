@@ -113,7 +113,7 @@ def login():
   temp = [uid]
   print(temp)
 
-  cursor = g.conn.execute('select *  from users where uid =\'' + uid + '\' ' )
+  cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\' ' )
   result = [r for r in cursor]
   print(result)
   if  len(result) != 0:
