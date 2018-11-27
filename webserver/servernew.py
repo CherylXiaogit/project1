@@ -110,17 +110,20 @@ def index():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-  uid = request.form["uid"]
-  temp = [uid]
-  print(temp)
+  if request.method == "GET":
+    return render_template("index.html")
+  else:
+      uid = request.form["uid"]
+      temp = [uid]
+      print(temp)
 
-  cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\' ')
-  result = [r for r in cursor]
-  print(result)
-  if  len(result) != 0:
-    return render_template('user_page.html')
-  else :
-        return render_template('not_found.html')
+      cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\' ')
+      result = [r for r in cursor]
+      print(result)
+      if  len(result) != 0:
+        return render_template('user_page.html')
+      else :
+            return render_template('not_found.html')
     
     
 if __name__ == "__main__":
