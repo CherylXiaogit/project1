@@ -154,7 +154,7 @@ def all_items():
     tmp['uid'] = r[4]
     tmp['price'] = r[5]
     info.append(tmp)
-    cursor.close()
+  cursor.close()
   return render_template('all_items.html',data=info)
     
     
