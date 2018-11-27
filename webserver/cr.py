@@ -186,9 +186,6 @@ def sign_up():
         
 
 
-FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
-                       left join clothing on item.iid = clothing.iid
-                       left join service on item.iid = service.iid'''
 
 def get_all(cursor):
     return [result for result in cursor]
