@@ -201,7 +201,7 @@ def post():
 	item_condition = request.form['item_condition']
 	#iid= request.form['iid']
 	price = request.form['price']
-        g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\'' + str(contact_info)+'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
+        g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
         return render_template('post.html')              
 
 
