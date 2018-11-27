@@ -159,7 +159,7 @@ def all_items():
   cursor.close()
   return render_template('all_items.html',data=info)
     
-@app.route('/myitem')
+@app.route('/myitem', methods=['GET', 'POST'])
 def myitem():
 	if request.method == "GET":
 		return render_template("myitem.html")
