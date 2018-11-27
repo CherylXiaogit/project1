@@ -183,7 +183,6 @@ def user_reviews():
   uid = request.cookies.get('uid')
   cursor = g.conn.execute('select * from review where receiverid = \''+ uid +'\'')
   info = []
-  
   for r in cursor:
     tmp = {}
     tmp['Rating'] = str(r[0])
