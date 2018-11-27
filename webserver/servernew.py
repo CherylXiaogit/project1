@@ -162,6 +162,7 @@ def sign_up():
 def all_items():
   cursor = g.conn.execute('select * from item')
   info = []
+  uid = request.cookies.get('uid')
   
   for r in cursor:
     tmp = {}
@@ -171,6 +172,7 @@ def all_items():
     tmp['Item ID'] = str(r[3])
     tmp['Owner ID'] = str(r[4])
     tmp['Price'] = str(r[5])
+    tmp['uid'] = str(uid)
     info.append(tmp)
   cursor.close()
   return render_template('all_items.html',data=info)
