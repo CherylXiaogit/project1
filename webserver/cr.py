@@ -174,7 +174,7 @@ SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info) VALUES (%s, 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
 	if request.method == "GET":
-		return render_template("sign_up.html")
+		return render_template("registe.html")
 	else:
 		uid = request.form["uid"]
 		school_name = request.form["school_name"]
