@@ -173,18 +173,16 @@ SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info) VALUES (%s, 
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
-	uid = request.form["uid"]
-        school_name = request.form["school_name"]
-        contact_info = request.form["contact_info"]
-       # r = g.conn.execute('select uid from users')
-        # if username already exists
-        #res = [re for re in r]
-        #if(len(res) != 0):
-		#return render_template('username_error.html')
-       
-        #else:
-	g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
-	return render_template('login.html')            
+	try:
+		if request.method == "GET":
+			return render_template("sign_up.html")
+		else:
+			uid = request.form["uid"]
+			school_name = request.form["school_name"]
+			contact_info = request.form["contact_info"]
+			g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
+			return render_template('user_page.html')
+         
         
 def all_item(item):
   if item:
