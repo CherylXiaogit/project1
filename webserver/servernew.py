@@ -114,9 +114,9 @@ def login():
   print(temp)
 
   cursor = g.conn.execute('select *  from users where uid =\'' + uid + '\' ' )
-    result = [r for r in cursor]
-          print(result)
-          if  len(result) != 0:
-      return render_template('user_page.html')
-    else :
-      return render_template('not_found.html')
+  result = [r for r in cursor]
+  print(result)
+  if  len(result) != 0:
+    return render_template('user_page.html')
+  else :
+        return render_template('not_found.html')
