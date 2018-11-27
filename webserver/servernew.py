@@ -108,6 +108,11 @@ def index():
   return render_template("index.html")
 
 
+def delete_cookie(resp):
+    resp.set_cookie('uid', '', expires = 0)
+    resp.set_cookie('school_name', '', expires = 0)
+    resp.set_cookie('contact_info', '', expires = 0)
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
   if request.method == "GET":
