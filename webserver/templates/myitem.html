@@ -14,15 +14,13 @@
       <h1>Please login</h1>
         <form action="/myitem" method="POST">
   <input type="uid" name="uid" placeholder="User ID">
+  <input type="submit" value="Log in">  
   <h1>Information of My items </h1>
-  
-
   <div>
     {% for n in data %}
     <div>{{n}}</div>
     {% endfor %}
   </div>
-<li><a href="/user_page">Return to Previous Page</a></li>
 <li><a href="/">Logout</a></li>
 
 
