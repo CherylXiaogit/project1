@@ -107,7 +107,7 @@ def index():
   #
   return render_template("index.html")
 
-@app.route('/login', method = ['GET', 'POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
   uid = request.form['uid']
   temp = [uid]
