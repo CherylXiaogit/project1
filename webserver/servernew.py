@@ -171,16 +171,16 @@ def all_items():
 
 @app.route('/user_reviews')
 def user_reviews():
-  uid = request.cookies.get('uid')
+  uid = xstr(request.cookies.get('uid'))
   cursor = g.conn.execute('select * from review where receiverid = \''+ uid +'\'')
   info = []
   
   for r in cursor:
     tmp = {}
-    tmp['Rating'] = xstr(r[0])
-    tmp['Review Content'] = xstr(r[1])
-    tmp['Review ID'] = xstr(r[2])
-    tmp['Writer ID'] = xstr(r[4])
+    tmp['Rating'] = str(r[0])
+    tmp['Review Content'] = str(r[1])
+    tmp['Review ID'] = str(r[2])
+    tmp['Writer ID'] = str(r[4])
     info.append(tmp)
     cursor.close()
   return render_template('user_reviews.html',data=info)
