@@ -125,24 +125,19 @@ SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
                 VALUES (%s, %s, %s);'''
 
 
-@app.route('/sign_up', methods = ["POST", "GET"])
-def signup():
-  try:
-    if request.method == "GET":
-      return render_template("registe.html")
-    else:
-      uid = request.form["uid"]
-      school_name = request.form["school_name"]
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	username = request.form['username']
+       school_name = request.form["school_name"]
       contact_info = request.form["contact_info"]
-      g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
-      resp = make_response(redirect("/"))
-      delete_exsting_user_cookie(resp)
-      resp.set_cookie('uid', request.form["uid"])
-      resp.set_cookie('school_name', request.form["school_name"])
-      resp.set_cookies("contact_info", request.form["contact_info"])
-      return resp
-  except:
-    return redirect("/")
+        r = g.conn.execute('select uid from users')
+        # if username already exists
+        res = [re for re in r]
+        if(len(res) != 0):
+            return render_template('username_error.html')
+        else:
+            g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
+            return render_template('registe.html') 
 
 
 LOGIN_USER = '''SELECT uid,school_name,contact_info FROM users WHERE school_name = %s and contact_info=%s'''
