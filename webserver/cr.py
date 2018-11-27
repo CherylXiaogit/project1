@@ -172,26 +172,23 @@ def all_items():
   cursor.close()
   return render_template('all_items.html',data=info)
     
-@app.route('/myitem', methods=['GET', 'POST'])
+@app.route('/myitem')
 def myitem():
-	if request.method == "GET":
-		return render_template("myitem.html")
-	else:
-		uid = request.cookies.get('uid')
-        	cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
-        	info = []
-        	for r in cursor:
-			tmp = {}
-    			tmp['Item Information'] = str(r[0])
-    			tmp['Location'] = str(r[1])
-    			tmp['Item Condition'] = str(r[2])
-    			tmp['Item ID'] = str(r[3])
-    			tmp['Owner ID'] = str(r[4])
-    			tmp['Price'] = str(r[5])
-   			info.append(tmp)
+	uid = request.cookies.get('uid')
+        cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
+        info = []
+        for r in cursor:
+		tmp = {}
+    		tmp['Item Information'] = str(r[0])
+    		tmp['Location'] = str(r[1])
+  		tmp['Item Condition'] = str(r[2])
+    		tmp['Item ID'] = str(r[3])
+    		tmp['Owner ID'] = str(r[4])
+ 		tmp['Price'] = str(r[5])
+   		info.append(tmp)
    		 # can also be accessed using result[0]
-        	cursor.close()
-        	return render_template('myitem.html',data=info)
+        cursor.close()
+        return render_template('myitem.html',data=info)
 
 
     
