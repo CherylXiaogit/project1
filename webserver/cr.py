@@ -121,7 +121,7 @@ def login():
       result = [r for r in cursor]
       print(result)
       if  len(result) != 0:
-        return render_template('user_page.html')
+        return myitem()
       else :
             return render_template('not_found.html')
 @app.route('/sign_up', methods=['GET', 'POST'])
