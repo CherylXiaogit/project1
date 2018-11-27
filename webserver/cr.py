@@ -127,9 +127,9 @@ SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	username = request.form['username']
-       school_name = request.form["school_name"]
-      contact_info = request.form["contact_info"]
+	uid = request.form['uid']
+	school_name = request.form["school_name"]
+	contact_info = request.form["contact_info"]
         r = g.conn.execute('select uid from users')
         # if username already exists
         res = [re for re in r]
