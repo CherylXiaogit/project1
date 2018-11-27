@@ -136,10 +136,10 @@ def login():
       result = [r for r in cursor]
       print(result)
       if  len(result) != 0:
-        resp = make_response(redirect("/"))
+        resp = make_response(redirect'user_page.html')
         delete_cookie(resp)
         resp.set_cookie('uid', uid)
-        return resp, render_template('user_page.html')
+        return resp
       else :
             return render_template('not_found.html')
 @app.route('/sign_up', methods=['GET', 'POST'])
