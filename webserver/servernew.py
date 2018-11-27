@@ -190,7 +190,7 @@ def user_reviews():
     tmp['Review ID'] = str(r[2])
     tmp['Writer ID'] = str(r[4])
     info.append(tmp)
-    cursor.close()
+  cursor.close()
   return render_template('user_reviews.html',data=info)
 
     
