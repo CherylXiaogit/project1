@@ -110,8 +110,11 @@ def index():
 
 def delete_cookie(resp):
     resp.set_cookie('uid', '', expires = 0)
-    resp.set_cookie('school_name', '', expires = 0)
-    resp.set_cookie('contact_info', '', expires = 0)
+def xstr(s):
+    if s is None:
+        return ''
+    else:
+        return str(s)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -122,7 +125,7 @@ def login():
       temp = [uid]
       print(temp)
 
-      cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\' ')
+      cursor = g.conn.execute('select uid from users where uid =\'' + uid + '\'')
       result = [r for r in cursor]
       print(result)
       if  len(result) != 0:
@@ -174,10 +177,10 @@ def user_reviews():
   
   for r in cursor:
     tmp = {}
-    tmp['Rating'] = r[0]
-    tmp['Review Content'] = r[1]
-    tmp['Review ID'] = r[2]
-    tmp['Writer ID'] = r[4]
+    tmp['Rating'] = xstr(r[0])
+    tmp['Review Content'] = xstr(r[1])
+    tmp['Review ID'] = xstr(r[2])
+    tmp['Writer ID'] = xstr(r[4])
     info.append(tmp)
     cursor.close()
   return render_template('user_reviews.html',data=info)
