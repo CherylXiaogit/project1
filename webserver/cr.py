@@ -183,7 +183,7 @@ def sign_up():
 		#return render_template('username_error.html')
        
         #else:
-		g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
+	g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
 	return render_template('registe.html')            
         
 def all_item(item):
