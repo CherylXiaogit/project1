@@ -107,6 +107,20 @@ def index():
   #
   return render_template("index.html")
 
+def set_cookie_redirct(cookie_key, cookie_val, redirct_url):
+    resp = make_response(redirect(redirct_url))
+    resp.set_cookie(cookie_key, cookie_val)
+    return resp
+
+def delete_cookie(resp):
+    resp.set_cookie('uid', '', expires = 0)
+    
+def xstr(s):
+    if s is None:
+        return ''
+    else:
+        return str(s)
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -163,7 +177,7 @@ def myitem():
 	if request.method == "GET":
 		return render_template("myitem.html")
 	else:
-		uid = request.form["uid"]
+		uid = request.cookies.get('uid')
         	cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
         	info = []
         	for r in cursor:
