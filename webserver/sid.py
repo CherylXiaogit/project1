@@ -9,11 +9,11 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     if not session.get('logged_in'):
-        return render_template('login.html')
+        return render_template('login_sid.html')
     else:
         return "Hello Boss!"
  
-@app.route('/login', methods=['POST'])
+@app.route('/login-sid', methods=['POST'])
 def do_admin_login():
     if request.form['password'] == 'password' and request.form['username'] == 'admin':
         session['logged_in'] = True
