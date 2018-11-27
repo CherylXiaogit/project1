@@ -193,7 +193,7 @@ def myitem():
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     if request.method == "GET":
-        return render_template("new_post.html")
+        return render_template("post.html")
     else:
         uid = request.cookies.get('uid')
         info = request.form['info']
@@ -202,7 +202,7 @@ def post():
 	#iid= request.form['iid']
 	price = request.form['price']
         g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\'' + str(contact_info)+'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
-        return render_template('new_post.html')              
+        return render_template('post.html')              
 
 
 
