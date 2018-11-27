@@ -113,13 +113,6 @@ def index():
   return render_template("index.html", **context)
 
 
-def get_first(cursor):
-  data = None
-  for i in cursor:
-    data = i
-    break
-  return data
-
 
 SIGNUP_USER = '''INSERT INTO users (uid, school_name, contact_info)
                 VALUES (%s, %s, %s);'''
@@ -139,120 +132,6 @@ def signup():
         else:
             g.conn.execute(SIGNUP_USER, (uid, school_name, contact_info))
             return render_template('registe.html') 
-
-
-LOGIN_USER = '''SELECT uid,school_name,contact_info FROM users WHERE school_name = %s and contact_info=%s'''
-
-def delete_cookie(resp):
-    resp.set_cookie('uid', '', expires = 0)
-    resp.set_cookie('school_name', '', expires = 0)
-    resp.set_cookie('contact_info', '', expires = 0)
-
-
-@app.route('/login', methods = ["POST", "GET"])
-def login():
-  if request.method == "GET":
-    return render_template("login.html")
-  else:
-    uid = request.form["uid"]
-    cursor = g.conn.execute(LOGIN_USER, uid)
-    result = get_first(cursor)
-    if result: 
-      resp = make_response(redirect("/"))
-      delete_existing_user_cookie(resp)
-      resp.set_cookie('uid', request.form["uid"])
-      return resp  
-    else:
-      print "No User Found, please sign up!"
-      return render_template("sign_up.html")
-
-
-def all_item(item):
-  if item:
-    return [{'info': item[0],       \
-    'location': item[1],            \
-    'item_condition': item[2],      \
-    'iid': item[3],                 \
-    'uid': item[4],                 \
-    'price': item[5]}               \
-    for i in item]
-  return item
-
-FIND_ALL_ITEMS = ''' select * from item left join book on item.iid = book.iid
-                       left join clothing on item.iid = clothing.iid
-                       left join service on item.iid = service.iid'''
-
-def get_all(cursor):
-    return [result for result in cursor]
-
-@app.route('/items')
-def items():
-    all_cursor = g.conn.execute(FIND_ALL_ITEMS)
-    items = get_all(all_cursor)
-    data = dict(items = all_item(items))
-    #data = {'iid':56, 'name':"sjdhf",'price':123, 'item_comdition':"new"} 
-    return render_template("items.html", **data)
-
-
-
-if __name__ == "__main__":
-  import click
-
-  @click.command()
-  @click.option('--debug', is_flag=True)
-  @click.option('--threaded', is_flag=True)
-  @click.argument('HOST', default='0.0.0.0')
-  @click.argument('PORT', default=8111, type=int)
-  def run(debug, threaded, host, port):
-    """
-    This function handles command line parameters.
-    Run the server using
-        python server.py
-    Show the help text using
-        python server.py --help
-    """
-
-    HOST, PORT = host, port
-    print ("running on %s:%d" % (HOST, PORT))
-    app.run(host=HOST, port=PORT, debug=debug, threaded=threaded)
-
-
-  run()
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  
- 
-    
-  
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
