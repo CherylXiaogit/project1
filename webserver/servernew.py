@@ -110,7 +110,7 @@ def index():
 @app.route('/login', method = ['GET', 'POST'])
 def login():
   uid = request.form['uid']
-  temp = [username]
+  temp = [uid]
   print(temp)
 
   cursor = g.conn.execute('select *  from users where uid =\'' + uid + '\' ' )
