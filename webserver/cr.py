@@ -161,7 +161,9 @@ def all_items():
     
 @app.route('/myitem')
 def myitem():
-	
+	if request.method == "GET":
+		return render_template("myitem.html")
+	else:
 		uid = request.form["uid"]
         	cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
         	info = []
