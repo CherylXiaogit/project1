@@ -219,7 +219,7 @@ def post():
 		location = request.form['location']
 		item_condition = request.form['item_condition']
 		price = request.form['price']
-		g.conn.execute('insert into item (uid,info,
+		g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
 
 		return render_template('clothing.html') 
 
