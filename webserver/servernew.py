@@ -283,6 +283,46 @@ def all_clothing():
   cursor.close()
   return render_template('all_clothing.html',data=info)
 
+
+@app.route('/all_book')
+def all_book():
+  cursor = g.conn.execute('select i.info, i.location, i.item_condition, i.iid, i.uid, i.price, b.version, b.subject from book b left join item i on b.iid = i.iid')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['info'] = r[0]
+    tmp['location'] = r[1]
+    tmp['item_condition'] = r[2]
+    tmp['iid'] = r[3]
+    tmp['uid'] = r[4]
+    tmp['price'] = r[5]
+    tmp['version'] = r[6]
+    tmp['subject'] = r[7]
+    info.append(tmp)
+  cursor.close()
+  return render_template('all_book.html',data=info)
+
+
+
+@app.route('/all_service')
+def all_service():
+  cursor = g.conn.execute('select i.info, i.location, i.item_condition, i.iid, i.uid, i.price, s.duration from service s left join item i on s.iid = i.iid')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['info'] = r[0]
+    tmp['location'] = r[1]
+    tmp['item_condition'] = r[2]
+    tmp['iid'] = r[3]
+    tmp['uid'] = r[4]
+    tmp['price'] = r[5]
+    tmp['service'] = r[6]
+    info.append(tmp)
+  cursor.close()
+  return render_template('all_service.html',data=info)
+
     
     
 if __name__ == "__main__":
