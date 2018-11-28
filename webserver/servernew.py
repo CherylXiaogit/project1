@@ -252,7 +252,7 @@ def book():
         return render_template('book.html')         
 
 @app.route('/service', methods=['GET', 'POST'])
-def clothing():
+def service():
     if request.method == "GET":
         return render_template("service.html")
     else:
@@ -261,7 +261,7 @@ def clothing():
 	res = g.conn.execute('select count(iid) from item')
 	iid = res.fetchall()[0][0]
         g.conn.execute('insert into clothing (ownerid, duration,iid) values(\''+ str(uid) +'\',\'' + str(duration) +'\',\''+str(iid)+'\')')
-        return render_template('duration.html')         
+        return render_template('service.html')         
 
     
     
