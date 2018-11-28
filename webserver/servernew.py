@@ -212,7 +212,7 @@ def user_reviews():
 @app.route('/post')
 def post():
 	if request.method == "GET":
-        	return render_template("clothing.html")
+        	return render_template("post.html")
     	else:
 		uid = request.cookies.get('uid')
 		info = request.form['info']
@@ -221,7 +221,7 @@ def post():
 		price = request.form['price']
 		g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
 
-		return render_template('clothing.html') 
+		return render_template('post.html') 
 
 
 
