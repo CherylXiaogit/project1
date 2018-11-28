@@ -261,7 +261,27 @@ def service():
 	res = g.conn.execute('select count(iid) from item')
 	iid = res.fetchall()[0][0]
         g.conn.execute('insert into clothing (ownerid, duration,iid) values(\''+ str(uid) +'\',\'' + str(duration) +'\',\''+str(iid)+'\')')
-        return render_template('service.html')         
+        return render_template('service.html')     
+
+
+@app.route('/all_clothing')
+def all_clothing():
+  cursor = g.conn.execute('select i.info, i.location, i.item_condition, i.iid, i.uid, i.price, c.version, c.subject from clothing c left join item i on c.iid = i.iid')
+  info = []
+  
+  for r in cursor:
+    tmp = {}
+    tmp['info'] = r[0]
+    tmp['location'] = r[1]
+    tmp['item_condition'] = r[2]
+    tmp['iid'] = r[3]
+    tmp['uid'] = r[4]
+    tmp['price'] = r[5]
+    tmp['version'] = r[6]
+    tmp['subject'] = r[7]
+    info.append(tmp)
+    cursor.close()
+  return render_template('all_clothing.html',data=info)
 
     
     
