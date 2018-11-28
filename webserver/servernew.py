@@ -176,6 +176,23 @@ def all_items():
   cursor.close()
   return render_template('all_items.html',data=info)
 
+@app.route('/myitem')
+def myitem():
+	uid = request.cookies.get('uid')
+        cursor = g.conn.execute('select * from item where uid =\'' + uid + '\' ')
+        info = []
+        for r in cursor:
+		tmp = {}
+    		tmp['Item Information'] = str(r[0])
+    		tmp['Location'] = str(r[1])
+  		tmp['Item Condition'] = str(r[2])
+    		tmp['Item ID'] = str(r[3])
+    		tmp['Owner ID'] = str(r[4])
+ 		tmp['Price'] = str(r[5])
+   		info.append(tmp)
+   		 # can also be accessed using result[0]
+        cursor.close()
+        return render_template('myitem.html',data=info)
 
 @app.route('/user_reviews')
 def user_reviews():
@@ -191,6 +208,20 @@ def user_reviews():
     info.append(tmp)
   cursor.close()
   return render_template('user_reviews.html',data=info)
+
+@app.route('/post', methods=['GET', 'POST'])
+def post():
+    if request.method == "GET":
+        return render_template("post.html")
+    else:
+        uid = request.cookies.get('uid')
+        info = request.form['info']
+        location = request.form['location']
+	item_condition = request.form['item_condition']
+	#iid= request.form['iid']
+	price = request.form['price']
+        g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
+        return render_template('post.html') 
 
     
     
