@@ -225,16 +225,19 @@ def post():
         g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
         return render_template('post.html')         
 
-@app.route('/clothing')
+@app.route('/clothing', methods=['GET', 'POST'])
 def clothing():
-	if request.method == "GET":
-        	return render_template("clothing.html")
-    	else:
-		uid = request.cookies.get('uid')
-        	brand = request.form['brand']
-        	size = request.form['size']
-        	g.conn.execute('insert into clothing (ownerid,brand,size) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\')')
-        	return render_template('clothing.html') 
+    if request.method == "GET":
+        return render_template("clothing.html")
+    else:
+        uid = request.cookies.get('uid')
+        brand = request.form['brand']
+        size = request.form['size']
+	#iid= request.form['iid']
+	price = request.form['price']
+        g.conn.execute('insert into clothing (ownerid, brand, size) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\')')
+        return render_template('clothing.html')         
+
 
     
     
