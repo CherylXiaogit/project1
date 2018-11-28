@@ -117,11 +117,6 @@ def set_cookie_redirct(cookie_key, cookie_val, redirct_url):
 def delete_cookie(resp):
     resp.set_cookie('uid', '', expires = 0)
     
-def xstr(s):
-    if s is None:
-        return ''
-    else:
-        return str(s)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -368,19 +363,6 @@ def new_comment():
 
 
 
-@app.route('/delete_post', methods=['GET', 'POST'])
-def delete_post():
-    if request.method == "GET":
-        return render_template("delete_post.html")
-    else:
-        uid = request.cookies.get('uid')
-        iid = request.form['iid']
-        res = g.conn.execute('select * from item where iid =  \''+ iid +'\' and uid = \'' + uid + '\'')
-        if res:
-          g.conn.execute('delete from item where iid = \''+ str(iid) +'\'')
-          return render_template('delete_post.html')  
-        else:
-          return render_template('item_error.html')
 
 
     
