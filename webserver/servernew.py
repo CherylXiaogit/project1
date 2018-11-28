@@ -209,7 +209,9 @@ def user_reviews():
   cursor.close()
   return render_template('user_reviews.html',data=info)
 
-
+@app.route('/post')
+def post():
+	return render_template('post.html') 
 
     
     
