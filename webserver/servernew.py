@@ -233,8 +233,6 @@ def clothing():
         uid = request.cookies.get('uid')
         brand = request.form['brand']
         size = request.form['size']
-	#iid= request.form['iid']
-	price = request.form['price']
         g.conn.execute('insert into clothing (ownerid, brand, size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+str(lastval())+'\')')
         return render_template('clothing.html')         
 
