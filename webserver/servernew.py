@@ -280,7 +280,7 @@ def all_clothing():
     tmp['brand'] = r[6]
     tmp['size'] = r[7]
     info.append(tmp)
-    cursor.close()
+  cursor.close()
   return render_template('all_clothing.html',data=info)
 
     
