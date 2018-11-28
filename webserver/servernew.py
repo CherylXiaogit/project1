@@ -339,6 +339,19 @@ def user_comment():
   cursor.close()
   return render_template('user_comment.html',data=info)
 
+
+@app.route('/new_review', methods=['GET', 'POST'])
+def new_review():
+    if request.method == "GET":
+        return render_template("new_review.html")
+    else:
+        writerid = request.cookies.get('uid')
+        rating = request.form['rating']
+        content = request.form['content']
+        receiverid = request.form['receiverid']
+        g.conn.execute('insert into review (rating, content, receiverid,writerid) values(\''+ str(rating) +'\',\'' + str(content) +'\',\''+ str(receiverid) +'\',\''+ str(writerid) +'\')')
+        return render_template('new_review.html')  
+
     
     
 if __name__ == "__main__":
