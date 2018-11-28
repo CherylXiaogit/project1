@@ -235,7 +235,7 @@ def clothing():
         size = request.form['size']
 	#iid= request.form['iid']
 	price = request.form['price']
-        g.conn.execute('insert into clothing (ownerid, brand, size) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\')')
+        g.conn.execute('insert into clothing (ownerid, brand, size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+str(lastval())+'\')')
         return render_template('clothing.html')         
 
 
