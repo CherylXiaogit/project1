@@ -226,9 +226,7 @@ def clothing():
         brand = request.form['brand']
         size = request.form['size']
         g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
-	g.conn.execute('select iid from item order by iid desc limit 1')
-	iid = request.args.get('iid')
-	g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(iid) +'\')')
+	g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(lastval()) +'\')')
         return render_template('myitem.html') 
 
 
