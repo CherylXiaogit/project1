@@ -323,6 +323,22 @@ def all_service():
   cursor.close()
   return render_template('all_service.html',data=info)
 
+@app.route('/user_comment')
+def user_comment():
+  uid = request.cookies.get('uid')
+  cursor = g.conn.execute('select my_item.info, my_item.iid, c.cid, c.content, c.writerid  from (select * from item where uid = \''+ uid +'\') as my_item left join comment c on my_item.iid = c.iid')
+  info = []
+  for r in cursor:
+    tmp = {}
+    tmp['Item Information'] = str(r[0])
+    tmp['Item ID'] = str(r[1])
+    tmp['Comment ID'] = str(r[2])
+    tmp['Comment Content'] = str(r[4])
+    tmp['Writer ID'] = str(r[5])
+    info.append(tmp)
+  cursor.close()
+  return render_template('user_comment.html',data=info)
+
     
     
 if __name__ == "__main__":
