@@ -233,9 +233,9 @@ def clothing():
         uid = request.cookies.get('uid')
         brand = request.form['brand']
         size = request.form['size']
-	res = g.conn.execute('select max(iid) from item')
+	res = g.conn.execute('select count(iid) from item')
 	iid = res.fetchall()[0][0]
-        g.conn.execute('insert into clothing (ownerid, brand, size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+str(iid)+'\')')
+        g.conn.execute('insert into clothing (ownerid, brand, size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+int(iid)+'\')')
         return render_template('clothing.html')         
 
 
