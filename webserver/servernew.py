@@ -228,7 +228,7 @@ def clothing():
         g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
         iid = g.conn.execute('select iid from item order by iid desc limit 1')
         g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(iid) +'\')')
-        return render_template('clothing.html') 
+        return render_template('myitem.html') 
 
 
     
