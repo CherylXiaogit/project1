@@ -238,6 +238,30 @@ def clothing():
         g.conn.execute('insert into clothing (ownerid, brand, size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+str(iid)+'\')')
         return render_template('clothing.html')         
 
+@app.route('/book', methods=['GET', 'POST'])
+def book():
+    if request.method == "GET":
+        return render_template("book.html")
+    else:
+        uid = request.cookies.get('uid')
+        version = request.form['version']
+        subject = request.form['subject']
+	res = g.conn.execute('select count(iid) from item')
+	iid = res.fetchall()[0][0]
+        g.conn.execute('insert into book (ownerid, version, subject,iid) values(\''+ str(uid) +'\',\'' + str(version) +'\',\''+ str(subject) +'\',\''+str(iid)+'\')')
+        return render_template('book.html')         
+
+@app.route('/service', methods=['GET', 'POST'])
+def clothing():
+    if request.method == "GET":
+        return render_template("service.html")
+    else:
+        uid = request.cookies.get('uid')
+        duration = request.form['duration']
+	res = g.conn.execute('select count(iid) from item')
+	iid = res.fetchall()[0][0]
+        g.conn.execute('insert into clothing (ownerid, duration,iid) values(\''+ str(uid) +'\',\'' + str(duration) +'\',\''+str(iid)+'\')')
+        return render_template('duration.html')         
 
     
     
