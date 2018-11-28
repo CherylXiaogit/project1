@@ -266,7 +266,7 @@ def service():
 
 @app.route('/all_clothing')
 def all_clothing():
-  cursor = g.conn.execute('select i.info, i.location, i.item_condition, i.iid, i.uid, i.price, c.version, c.subject from clothing c left join item i on c.iid = i.iid')
+  cursor = g.conn.execute('select i.info, i.location, i.item_condition, i.iid, i.uid, i.price, c.brand, c.size from clothing c left join item i on c.iid = i.iid')
   info = []
   
   for r in cursor:
@@ -277,8 +277,8 @@ def all_clothing():
     tmp['iid'] = r[3]
     tmp['uid'] = r[4]
     tmp['price'] = r[5]
-    tmp['version'] = r[6]
-    tmp['subject'] = r[7]
+    tmp['brand'] = r[6]
+    tmp['size'] = r[7]
     info.append(tmp)
     cursor.close()
   return render_template('all_clothing.html',data=info)
