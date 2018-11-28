@@ -271,14 +271,14 @@ def all_clothing():
   
   for r in cursor:
     tmp = {}
-    tmp['info'] = r[0]
-    tmp['location'] = r[1]
-    tmp['item_condition'] = r[2]
-    tmp['iid'] = r[3]
-    tmp['uid'] = r[4]
-    tmp['price'] = r[5]
-    tmp['brand'] = r[6]
-    tmp['size'] = r[7]
+    tmp['info'] = str(r[0])
+    tmp['location'] = str(r[1])
+    tmp['item_condition'] = str(r[2])
+    tmp['iid'] = str(r[3])
+    tmp['uid'] = str(r[4])
+    tmp['price'] = str(r[5])
+    tmp['brand'] = str(r[6])
+    tmp['size'] = str(r[7])
     info.append(tmp)
   cursor.close()
   return render_template('all_clothing.html',data=info)
@@ -291,14 +291,14 @@ def all_book():
   
   for r in cursor:
     tmp = {}
-    tmp['info'] = r[0]
-    tmp['location'] = r[1]
-    tmp['item_condition'] = r[2]
-    tmp['iid'] = r[3]
-    tmp['uid'] = r[4]
-    tmp['price'] = r[5]
-    tmp['version'] = r[6]
-    tmp['subject'] = r[7]
+    tmp['info'] = str(r[0])
+    tmp['location'] = str(r[1])
+    tmp['item_condition'] = str(r[2])
+    tmp['iid'] = str(r[3])
+    tmp['uid'] = str(r[4])
+    tmp['price'] = str(r[5])
+    tmp['version'] = str(r[6])
+    tmp['subject'] = str(r[7])
     info.append(tmp)
   cursor.close()
   return render_template('all_book.html',data=info)
@@ -312,13 +312,13 @@ def all_service():
   
   for r in cursor:
     tmp = {}
-    tmp['info'] = r[0]
-    tmp['location'] = r[1]
-    tmp['item_condition'] = r[2]
-    tmp['iid'] = r[3]
-    tmp['uid'] = r[4]
-    tmp['price'] = r[5]
-    tmp['service'] = r[6]
+    tmp['info'] = str(r[0])
+    tmp['location'] = str(r[1])
+    tmp['item_condition'] = str(r[2])
+    tmp['iid'] = str(r[3])
+    tmp['uid'] = str(r[4])
+    tmp['price'] = str(r[5])
+    tmp['service'] = str(r[6])
     info.append(tmp)
   cursor.close()
   return render_template('all_service.html',data=info)
