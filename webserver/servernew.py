@@ -211,23 +211,18 @@ def user_reviews():
 
 @app.route('/post')
 def post():
-	return render_template('post.html') 
+	if request.method == "GET":
+        	return render_template("clothing.html")
+    	else:
+		uid = request.cookies.get('uid')
+		info = request.form['info']
+		location = request.form['location']
+		item_condition = request.form['item_condition']
+		price = request.form['price']
+		g.conn.execute('insert into item (uid,info,
 
-@app.route('/clothing', methods=['GET', 'POST'])
-def clothing():
-    if request.method == "GET":
-        return render_template("clothing.html")
-    else:
-        uid = request.cookies.get('uid')
-        info = request.form['info']
-        location = request.form['location']
-        item_condition = request.form['item_condition']
-        price = request.form['price']
-        brand = request.form['brand']
-        size = request.form['size']
-        g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
-	g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(lastval()) +'\')')
-        return render_template('myitem.html') 
+		return render_template('clothing.html') 
+
 
 
     
