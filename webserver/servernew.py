@@ -369,7 +369,7 @@ def new_comment():
 
 
 @app.route('/delete_post', methods=['GET', 'POST'])
-def new_comment():
+def delete_post():
     if request.method == "GET":
         return render_template("delete_post.html")
     else:
