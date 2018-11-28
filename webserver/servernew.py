@@ -213,6 +213,24 @@ def user_reviews():
 def post():
 	return render_template('post.html') 
 
+@app.route('/clothing', methods=['GET', 'POST'])
+def post():
+    if request.method == "GET":
+        return render_template("clothing.html")
+    else:
+        uid = request.cookies.get('uid')
+        info = request.form['info']
+        location = request.form['location']
+        item_condition = request.form['item_condition']
+        price = request.form['price']
+        brand = request.form['brand']
+        size = request.form['size']
+        g.conn.execute('insert into item (uid,info,location,item_condition,price) values(\''+ str(uid) +'\',\'' + str(info) +'\',\''+ str(location) +'\',\''+ str(item_condition) +'\',\''+ str(price) +'\')')
+        iid = g.conn.execute('select iid from item order by iid desc limit 1')
+        g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(iid) +'\')')
+        return render_template('clothing.html') 
+
+
     
     
 if __name__ == "__main__":
