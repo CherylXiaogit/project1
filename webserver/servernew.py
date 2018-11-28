@@ -223,7 +223,16 @@ def post():
 
 		return render_template('post.html') 
 
-
+@app.route('/clothing')
+def clothing():
+	if request.method == "GET":
+        	return render_template("clothing.html")
+    	else:
+		uid = request.cookies.get('uid')
+        	brand = request.form['brand']
+        	size = request.form['size']
+        	g.conn.execute('insert into clothing (ownerid,brand,size,iid) values(\''+ str(uid) +'\',\'' + str(brand) +'\',\''+ str(size) +'\',\''+ str(lastval()) +'\')')
+        	return render_template('clothing.html') 
 
     
     
