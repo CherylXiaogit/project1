@@ -367,6 +367,22 @@ def new_comment():
         return render_template('new_comment.html')  
 
 
+
+@app.route('/delete_post', methods=['GET', 'POST'])
+def new_comment():
+    if request.method == "GET":
+        return render_template("delete_post.html")
+    else:
+        uid = request.cookies.get('uid')
+        iid = request.form['iid']
+        res = g.conn.execute('select * from item where iid =  \''+ iid +'\' and uid = \'' + uid + '\'')
+        if res:
+          g.conn.execute('delete from item where iid = \''+ str(iid) +'\'')
+          return render_template('delete_post.html')  
+        else:
+          return render_template('item_error.html')
+
+
     
     
 if __name__ == "__main__":
