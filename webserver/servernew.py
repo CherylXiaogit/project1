@@ -352,6 +352,21 @@ def new_review():
         g.conn.execute('insert into review (rating, content, receiverid,writerid) values(\''+ str(rating) +'\',\'' + str(content) +'\',\''+ str(receiverid) +'\',\''+ str(writerid) +'\')')
         return render_template('new_review.html')  
 
+
+@app.route('/new_comment', methods=['GET', 'POST'])
+def new_comment():
+    if request.method == "GET":
+        return render_template("new_comment.html")
+    else:
+        writerid = request.cookies.get('uid')
+        content = request.form['content']
+        iid = request.form['iid']
+        res = g.conn.execute('select uid from item where iid =  \''+ iid +'\'')
+        ownerid = res.fetchall()[0][0]
+        g.conn.execute('insert into comment (content, writerid,iid, ownerid) values(\''+ str(content) +'\',\'' + str(writerid) +'\',\''+ str(iid) +'\',\''+ str(ownerid) +'\')')
+        return render_template('new_comment.html')  
+
+
     
     
 if __name__ == "__main__":
