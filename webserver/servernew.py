@@ -326,7 +326,7 @@ def all_service():
 @app.route('/user_comment')
 def user_comment():
   uid = request.cookies.get('uid')
-  cursor = g.conn.execute('select my_item.info, my_item.iid, c.cid, c.content, c.writerid  from (select * from item where uid = \''+ uid +'\') as my_item left join comment c on my_item.iid = c.iid')
+  cursor = g.conn.execute('select my_item.info, my_item.iid, c.cid, c.content, c.writerid  from (select * from item where uid = \''+ uid +'\') as my_item join comment c on my_item.iid = c.iid')
   info = []
   for r in cursor:
     tmp = {}
