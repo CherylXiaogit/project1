@@ -214,7 +214,7 @@ def post():
 	return render_template('post.html') 
 
 @app.route('/clothing', methods=['GET', 'POST'])
-def post():
+def clothing():
     if request.method == "GET":
         return render_template("clothing.html")
     else:
